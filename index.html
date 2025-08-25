@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Conecccion con la base de datos...</title>
+</head>
+
+<body>
+    <h1>Usuarios desde la base de datos...</h1>
+    <ul id="usuarios">
+    </ul>
+    <script>
+        fetch('http://localhost:3000/usuarios')
+            .then(response => response.json())
+            .then(data => {
+                const usuariosLista = document.getElementById('usuarios')
+                data.forEach(usuario => {
+                    const listItem = document.createElement('li')
+                    listItem.textContent = `Nombre: ${usuario.nombre}, Apellido: ${usuario.apellido}, Email: ${usuario.email}`
+                    usuariosLista.appendChild(listItem)
+                });
+            }).catch(error => {
+                console.log(error);
+            })
+    </script>
+</body>
+
+</html>
